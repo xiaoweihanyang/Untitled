@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>由html5实现的文件上传预览功能</title>
+<link rel="stylesheet" type="text/css" href="../assets/css/dropzone.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+<!-- 引用控制层插件样式 -->
+
+<!-- 引用初始化JS -->
+<script src="../assets/js/require.js"></script>
+<script src="../assets/js/require-main.js"></script>
+</head>
+
+<body>
+
+    <h1 style="text-align:center;">Files Upload</h1>
+
+		<form id="form" class="form-horizontal" method="POST" action="index/index/add" enctype="multipart/form-data">
+			<div class="form-group">
+			    <label class="control-label col-xs-12 col-sm-2">文件:</label>
+			    <div class="col-xs-12 col-sm-8">
+			        <div class="input-group">
+			            <input id="c-coverimage" class="form-control" size="50" name="row[file]" type="text" value="">
+			            <div class="input-group-addon no-border no-padding">
+			                <span>
+			                	<button type="button" class="btn btn-danger faupload" data-input-id="c-coverimage" data-multiple="true"  data-preview-id="p-coverimage" data-url="index/ajax/upload" data-middle="/fileupload/public/"> 上传</button>
+			                </span>
+			            </div>
+			        </div>
+			        <ul class="row list-inline faupload-preview" id="p-coverimage"></ul>
+			    </div>
+			</div>
+			<div class="form-group layer-footer">
+		        <label class="control-label col-xs-12 col-sm-2"></label>
+		        <div class="col-xs-12 col-sm-8">
+		            <button type="submit" class="btn btn-success btn-embossed">确定</button>
+		            <button type="reset" class="btn btn-default btn-embossed">重置</button>
+		        </div>
+		    </div>
+		</form>
+
+</body>
+<script>
+	require(['upload'], function (Upload) {
+		var form = $("#form");
+        Upload.api.upload($(".faupload", form))
+    });
+</script>
+</html>
